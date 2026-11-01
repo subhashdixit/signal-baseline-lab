@@ -160,3 +160,8 @@ cython_debug/
 #.idea/
 
 *.xlsx
+
+node_modules/
+.pylint-cache/
+__pycache__/
+.env
