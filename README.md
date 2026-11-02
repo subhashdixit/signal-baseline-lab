@@ -108,3 +108,7 @@ Original Baseline_Creation_Tool source retained. The default 400-observation exa
 Use 3–10,000 finite samples, magnitude at most 1e12. Radius 0–200, odd smoothing width 1–501 and shift fraction ±0.3 are enforced. Unit spacing is assumed; irregularly sampled signals should be resampled first. Broad/negative peaks and steep background changes can violate the envelope assumption. Endpoint forcing is an explicit optional distortion.
 
 The test suite checks calculation contracts and invalid inputs. It cannot establish that an input dataset is representative, that a heuristic is scientifically correct for every domain, or that a result is suitable for an automated consequential decision. Read the original source alongside the maintained browser implementation when comparing behavior.
+
+## Local dependency installation
+
+The maintained app is HTML/CSS/JavaScript and needs no Python packages. `requirements.txt` documents this; install development tools with `npm ci` using the pinned Node/npm versions. See [DEPENDENCIES.md](DEPENDENCIES.md). Original prototype requirements are preserved at `archive/prototype-requirements.in` where present; they are not the supported install command.
