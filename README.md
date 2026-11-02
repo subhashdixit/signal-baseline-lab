@@ -1,5 +1,8 @@
 # Signal Baseline Lab
 
+**Reproducible versions:** [Dependency versions and exact setup](DEPENDENCIES.md).
+
+
 [Open the application](https://subhashdixit.github.io/signal-baseline-lab/) · [Report an issue](https://github.com/subhashdixit/signal-baseline-lab/issues)
 
 Raw measurements often combine a background trend with peaks. This tool makes the baseline-estimation assumptions visible instead of hiding them inside a plotting notebook.
