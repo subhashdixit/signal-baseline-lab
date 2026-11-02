@@ -1,1 +1,98 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Separate a slowly changing background from peaks. Tune the method, inspect the curves and export locally."><title>Signal Baseline Lab</title><link rel="stylesheet" href="./styles.css"></head><body><header><div class="badge">Subhash Dixit · Applied portfolio</div><h1>Signal Baseline Lab</h1><p>Separate a slowly changing background from peaks. Tune the method, inspect the curves and export locally.</p><a href="https://github.com/subhashdixit/signal-baseline-lab">Source, concepts and operating guide ↗</a></header><main><section class="grid"><div><h2>1 · Choose your signal</h2><button id="example">Load synthetic peaks</button><label>CSV with a value column, up to 10,000 rows<input type="file" id="file" accept=".csv,text/csv"></label><label>Or paste one number per line<textarea id="values"></textarea></label></div><div><h2>2 · Tune the baseline</h2><label>Minimum-filter radius (0–200)<input id="radius" type="number" value="16" min="0" max="200"></label><label>Mean smoothing width (1–501, odd)<input id="width" type="number" value="31" min="1" max="501" step="2"></label><label>Vertical shift fraction of baseline range (−0.3 to 0.3)<input id="shift" type="number" value="0" min="-0.3" max="0.3" step="0.01"></label><label><input id="endpoints" type="checkbox"> Force endpoints to raw values</label><button id="run">Calculate baseline</button></div></section><section><h2>3 · Inspect and export</h2><svg id="chart"></svg><p id="metrics"></p><button id="export" disabled>Export raw / baseline / corrected CSV</button></section><p id="status" role="status" aria-live="polite"></p><details><summary>How this works · scope and limitations</summary><p>A centered rolling minimum follows the lower envelope. An edge-aware moving average smooths it. Subtracting this estimate from the raw signal exposes peaks. This is a deterministic filter, not a learned model. Wide windows may erase broad peaks; a noisy minimum may sit below the true background. Endpoint forcing can introduce discontinuities.</p></details></main><footer><p>GitHub Pages · HTML / JavaScript · Original project preserved in source.</p></footer><script type="module" src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Separate a slowly changing background from peaks. Tune the method, inspect the curves and export locally."
+    />
+    <title>Signal Baseline Lab</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="badge">Subhash Dixit · Applied portfolio</div>
+      <h1>Signal Baseline Lab</h1>
+      <p>
+        Separate a slowly changing background from peaks. Tune the method,
+        inspect the curves and export locally.
+      </p>
+      <a href="https://github.com/subhashdixit/signal-baseline-lab"
+        >Source, concepts and operating guide ↗</a
+      >
+    </header>
+    <main>
+      <section class="grid">
+        <div>
+          <h2>1 · Choose your signal</h2>
+          <button id="example">Load synthetic peaks</button
+          ><label
+            >CSV with a value column, up to 10,000 rows<input
+              type="file"
+              id="file"
+              accept=".csv,text/csv" /></label
+          ><label
+            >Or paste one number per line<textarea id="values"></textarea>
+          </label>
+        </div>
+        <div>
+          <h2>2 · Tune the baseline</h2>
+          <label
+            >Minimum-filter radius (0–200)<input
+              id="radius"
+              type="number"
+              value="16"
+              min="0"
+              max="200" /></label
+          ><label
+            >Mean smoothing width (1–501, odd)<input
+              id="width"
+              type="number"
+              value="31"
+              min="1"
+              max="501"
+              step="2" /></label
+          ><label
+            >Vertical shift fraction of baseline range (−0.3 to 0.3)<input
+              id="shift"
+              type="number"
+              value="0"
+              min="-0.3"
+              max="0.3"
+              step="0.01" /></label
+          ><label
+            ><input id="endpoints" type="checkbox" /> Force endpoints to raw
+            values</label
+          ><button id="run">Calculate baseline</button>
+        </div>
+      </section>
+      <section>
+        <h2>3 · Inspect and export</h2>
+        <svg id="chart"></svg>
+        <p id="metrics"></p>
+        <button id="export" disabled>
+          Export raw / baseline / corrected CSV
+        </button>
+      </section>
+      <p id="status" role="status" aria-live="polite"></p>
+      <details>
+        <summary>How this works · scope and limitations</summary>
+        <p>
+          A centered rolling minimum follows the lower envelope. An edge-aware
+          moving average smooths it. Subtracting this estimate from the raw
+          signal exposes peaks. This is a deterministic filter, not a learned
+          model. Wide windows may erase broad peaks; a noisy minimum may sit
+          below the true background. Endpoint forcing can introduce
+          discontinuities.
+        </p>
+      </details>
+    </main>
+    <footer>
+      <p>
+        GitHub Pages · HTML / JavaScript · Original project preserved in source.
+      </p>
+    </footer>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
